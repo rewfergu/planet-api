@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from './Avatar';
 
-import { render, waitForElement, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 const terrain = 'jungle, rainforests';
 
@@ -20,10 +20,6 @@ test('renders a planet', () => {
     <Avatar data-testid="avatar" size={30} terrain={terrain} />
   );
   const component = getByTestId('planetGraphic');
-
-  // expect(component).toHaveAttribute('cx');
-  // expect(component).toHaveAttribute('cy');
-  // expect(component).toHaveAttribute('radius');
   expect(component).toHaveAttribute('fill', '#598e59');
 });
 
