@@ -2,7 +2,7 @@ import React from 'react';
 import { render, waitForElement } from '@testing-library/react';
 import PlanetPage from './PlanetPage';
 
-import data from './data.json';
+import data from '../data.json';
 
 test('we can render a planet page', () => {
   const { getByText, getByTestId } = render(
@@ -14,9 +14,7 @@ test('we can render a planet page', () => {
 });
 
 test('we can render a message if no planets are found', () => {
-  const { queryByText, getByTestId } = render(
-    <PlanetPage planetList={{}} planetId={4} />
-  );
+  const { queryByText, getByTestId } = render(<PlanetPage planetId={4} />);
 
   expect(getByTestId('planetPage')).toBeTruthy();
   expect(queryByText('Hoth')).not.toBeInTheDocument();

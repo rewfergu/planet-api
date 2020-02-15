@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { Link } from '@reach/router';
 import styled from '@emotion/styled';
 import { css, jsx } from '@emotion/core';
-import Avatar from './Avatar';
-import Button from './Button';
-import DetailItem from './DetailItem';
-import FetchDetailItem from './FetchDetailItem';
+import Avatar from '../Avatar/Avatar';
+import Button from '../Button/Button';
+import DetailItem from '../DetailItem/DetailItem';
+import FetchDetailItem from '../FetchDetailItem/FetchDetailItem';
 
 const Planet = ({ info }) => {
   const [visibility, setVisibility] = useState(false);
@@ -32,7 +32,7 @@ const Planet = ({ info }) => {
           <span>Climate: </span> {info.climate}
         </Climate>
       </BasicInfoContainer>
-      {visibility &&
+      {visibility && (
         <Details data-testid="details">
           <DetailItem data-testid="terrain" label="Terrain">
             {info.terrain}
@@ -53,7 +53,8 @@ const Planet = ({ info }) => {
           <DetailItem label="url">
             <Link to={info.url.substr(20)}>{info.url.substr(20)}</Link>
           </DetailItem>
-        </Details>}
+        </Details>
+      )}
     </Container>
   );
 };

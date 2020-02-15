@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import colors from './colors';
+import colors from '../colors';
 
 // const margin = 10;
 

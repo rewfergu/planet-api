@@ -1,9 +1,6 @@
 import React from 'react';
 import { render, waitForElement } from '@testing-library/react';
-// import fetch, { Response } from 'node-fetch';
 import FetchDetailItem from './FetchDetailItem';
-
-jest.mock('node-fetch');
 
 test('it renders detail data', async () => {
   global.fetch = jest.fn().mockImplementation(() =>

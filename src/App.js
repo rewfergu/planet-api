@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Router } from '@reach/router';
 import { css, Global } from '@emotion/core';
 
-import Planets from './Planets';
-import PlanetPage from './PlanetPage';
+import Planets from './Planets/Planets';
+import PlanetPage from './PlanetPage/PlanetPage';
 
 const globalStyles = css`
   html,

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import DetailItem from './DetailItem';
+import DetailItem from '../DetailItem/DetailItem';
 
 const FetchDetailItem = props => {
   const [item, setItem] = useState([]);
-  useEffect(
-    () => {
-      const result = [];
+  useEffect(() => {
+    const result = [];
 
-      const promiseList = props.urls.map(url => {
-        return fetch(url).then(response => response.json()).then(
+    const promiseList = props.urls.map(url => {
+      return fetch(url)
+        .then(response => response.json())
+        .then(
           data => {
             result.push(data[props.scope]);
           },
@@ -16,15 +17,13 @@ const FetchDetailItem = props => {
             console.log('error fetching detail item', err);
           }
         );
-      });
+    });
 
-      Promise.all(promiseList).then(() => {
-        console.log('all done', result);
-        setItem(result);
-      });
-    },
-    [props.scope, props.urls]
-  );
+    Promise.all(promiseList).then(() => {
+      console.log('all done', result);
+      setItem(result);
+    });
+  }, [props.scope, props.urls]);
 
   return (
     <DetailItem label={props.label}>
