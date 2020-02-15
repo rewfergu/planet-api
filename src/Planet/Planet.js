@@ -25,11 +25,11 @@ const Planet = ({ info }) => {
         </Button>
       </Heading>
       <BasicInfoContainer>
-        <Population data-testid="population">
-          <span>Population: </span> {info.population}
+        <Population data-testid="population" label="Population">
+          {info.population}
         </Population>
-        <Climate data-testid="climate">
-          <span>Climate: </span> {info.climate}
+        <Climate data-testid="climate" label="Climate">
+          {info.climate}
         </Climate>
       </BasicInfoContainer>
       {visibility && (
@@ -59,6 +59,8 @@ const Planet = ({ info }) => {
   );
 };
 
+const small = '450px';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,52 +74,86 @@ const Container = styled.div`
 
 const Heading = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto 1rem;
   width: 100%;
   padding-bottom: 1rem;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  @media (min-width: ${small}) {
+    flex-direction: row;
+  }
 
   button {
     display: inline-block;
-    margin-left: 1rem;
   }
 `;
 
 const Title = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   font-size: 1.3rem;
+  margin-bottom: 1rem;
+  @media (min-width: ${small}) {
+    flex-direction: row;
+    margin-bottom: 0;
+  }
 `;
 
 const BasicInfoContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: 0 auto;
   width: 100%;
   justify-content: space-between;
+  @media (min-width: ${small}) {
+    flex-direction: row;
+  }
 `;
 
 const infoBase = css`
   font-size: 1rem;
-  width: 50%;
   padding: 1rem;
   background: rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+  border: none;
+
+  @media (min-width: ${small}) {
+    width: 50%;
+  }
 `;
 
-const Population = styled.div`
+const Population = styled(DetailItem)`
   ${infoBase}
-  margin-right: 1rem;
+  @media (min-width: ${small}) {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem 0 0;
+  }
 `;
 
-const Climate = styled.div`
+const Climate = styled(DetailItem)`
   ${infoBase}
+  padding-bottom: 1rem !important;
+  @media (min-width: ${small}) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0 !important;
+  }
 `;
 
 const StyledAvatar = styled(Avatar)`
-  display: inline-block;
-  margin-right: 0.5rem;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0.5rem;
+  @media (min-width: ${small}) {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin: 0 0.5rem 0 0;
+  }
 `;
 
 const Details = styled.div`
@@ -126,23 +162,5 @@ const Details = styled.div`
   background: rgba(0, 0, 0, 0.05);
   text-align: left;
 `;
-
-// const detailItemStyles = css`
-//   padding-bottom: 0.5rem;
-//   margin-bottom: 0.5rem;
-//   border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
-
-//   span {
-//     font-weight: bold;
-//   }
-// `;
-
-// function DetailItem(props) {
-//   return (
-//     <div css={detailItemStyles}>
-//       <span>{props.label}: </span> {props.children}
-//     </div>
-//   );
-// }
 
 export default Planet;

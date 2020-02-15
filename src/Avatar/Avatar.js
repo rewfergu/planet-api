@@ -1,37 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import colors from '../colors';
 
-// const margin = 10;
-
-// function setRadius() {
-//   return Math.random() * 20 + 20;
-// }
-
-// function setDiff(rad) {
-//   return rad + margin;
-// }
-
-// function setCoords(diff) {
-//   const coords = Math.random() * (100 - diff * 2) + diff;
-//   return coords;
-// }
-
 export default function Avatar(props) {
   const circle = useRef(null);
-  // const [r, set_r] = useState(30);
-  // const [cx, set_cx] = useState(50);
-  // const [cy, set_cy] = useState(50);
-  const planetColor = colors[props.terrain.split(', ')[0]] || '#719490';
-  // useEffect(() => {
-  // const circle_radius = setRadius();
-  // const circle_diff = setDiff(circle_radius);
-  // const circle_x = setCoords(circle_diff);
-  // const circle_y = setCoords(circle_diff);
-
-  // set_r(circle_radius);
-  // set_cx(circle_x);
-  // set_cy(circle_y);
-  // }, []);
+  const [state, setState] = useState({
+    radius: Math.random() * 20 + 20,
+    color: '#719490'
+  });
+  useEffect(() => {
+    if (props.terrain) {
+      setState(s => ({
+        ...s,
+        color: colors[props.terrain.split(', ')[0]]
+      }));
+    }
+  }, [props.terrain]);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -48,10 +31,10 @@ export default function Avatar(props) {
         ref={circle}
         cx={50}
         cy={50}
-        r={Math.random() * 20 + 20}
+        r={state.radius}
         strokeWidth="1"
         stroke="rgba(0,0,0,0.25)"
-        fill={planetColor}
+        fill={state.color}
       />
     </svg>
   );

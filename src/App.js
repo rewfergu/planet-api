@@ -17,6 +17,7 @@ const globalStyles = css`
     color: #676767;
     background: linear-gradient(rgb(47, 181, 208) 0%, rgba(2, 0, 36, 1) 100%);
     min-height: 100%;
+    padding: 0 1rem;
   }
 `;
 

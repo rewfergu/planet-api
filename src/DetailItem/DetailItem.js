@@ -6,15 +6,23 @@ const detailItemStyles = css`
   margin-bottom: 0.5rem;
   border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
 
-  span {
+  .itemLabel {
     font-weight: bold;
+  }
+
+  &:last-of-type {
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 `;
 
 function DetailItem(props) {
   return (
     <div css={detailItemStyles} {...props}>
-      <span data-testid="detailItemLabel">{props.label}: </span>{' '}
+      <span className="itemLabel" data-testid="detailItemLabel">
+        {props.label}:{' '}
+      </span>{' '}
       <span data-testid="detailItemText">{props.children}</span>
     </div>
   );
